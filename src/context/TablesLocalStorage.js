@@ -13,7 +13,7 @@ const TablesLocalStorageProvider = ({ ...props }) => {
         setTables(data);
     }, [tables]);
 
-    //save the data(has recieved from server) in a localstorage.
+    //save the data in a localstorage.
     useEffect(() => {
         localStorage.setItem('tables', JSON.stringify(tables));
         if (tables !== null) {
