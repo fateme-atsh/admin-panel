@@ -45,12 +45,12 @@ const NewTable = () => {
                     <input type="number" className='border border-slate-900 rounded-md' name='user-phone' />
                 </div>
 
-                <div className='my-10 w-2/4' dir='ltr'>
+                <div className='my-10 pl-8 w-2/4' dir='ltr'>
                     <input type='reset' value='کنسل'
-                        className='text-xl px-5 py-3 bg-gray-500 hover:bg-gray-700 rounded-md text-white mx-4 cursor-pointer' />
+                        className='text-xl px-5 py-3 bg-gray-500 hover:bg-gray-700 rounded-md text-white mx-2 cursor-pointer' />
 
                     <input type='submit' value='ذخیره'
-                        className='text-xl px-5 py-3 bg-blue-500 hover:bg-blue-700 rounded-md text-white mx-4 cursor-pointer' />
+                        className='text-xl px-5 py-3 bg-blue-500 hover:bg-blue-700 rounded-md text-white mx-2 cursor-pointer' />
 
                 </div>
             </form>

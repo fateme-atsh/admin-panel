@@ -32,12 +32,15 @@ const Profile = () => {
         newFormData[fieldName] = fieldValue;
 
         setEditProfile(newFormData);
+        
     };
+    console.log(['field change:',EditProfile]);
 
     // function: save EDITED informations
     const handleSaveEditedForm = (event, userId) => {
         event.preventDefault();
         const id = userId.id;
+        console.log(id);
 
         const editedUser = {
             name: EditProfile.name,
@@ -52,9 +55,9 @@ const Profile = () => {
         newUser[index] = editedUser;
 
         setUser(newUser);
-
-        axios.put(`https://randomuser.me/api/?format=JSON/${userId}`, editedUser)
-            .then(res => { console.log(res) });
+        
+        // axios.put(`https://randomuser.me/api/?format=JSON/${userId}`, editedUser)
+        //     .then(res => { console.log(res) });
     };
 
     return (
@@ -66,10 +69,6 @@ const Profile = () => {
                             <div className='bg-white w-1/3 m-5 grid justify-center border rounded-md'>
                                 <div className='grid justify-center'>
                                     <img src={user.picture.large} alt="user" className='rounded-full mx-3 my-5' />
-                                    {/* <picture>
-                                    <source media="(min-width:650px)"  srcset={user.picture.large} className='rounded-full mx-3 my-5'/>
-                                    <source media="(min-width:465px)" srcSet={user.picture.thumbnail}/>
-                                    </picture> */}
                                 </div>
                                 <h4 className='m-3 text-center text-lg font-semibold'>{user.name.first} {user.name.last}</h4>
                                 <p className='text-xs text-justify py-2 px-5' >لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>
@@ -82,28 +81,28 @@ const Profile = () => {
                                     <label className='mx-4'>نام :</label>
                                     <input type='text' className='border rounded-md' name='name'
                                         placeholder={user.name.first}
-                                        onChange={handleFormChange} />
+                                        onChange={handleFormChange} ></input>
                                 </div>
 
                                 <div className='mx-10 my-5 grid grid-cols-2'>
                                     <label className='mx-4'>نام خانوادگی :</label>
                                     <input type='text' className='border rounded-md' name='lastName'
                                         placeholder={user.name.last}
-                                        onChange={handleFormChange} />
+                                        onChange={handleFormChange} ></input>
                                 </div>
 
                                 <div className='mx-10 my-5 grid grid-cols-2'>
                                     <label className='mx-4'>ایمیل :</label>
                                     <input type='text' className='border rounded-md' name='email'
                                         value={user.email}
-                                        onChange={handleFormChange} />
+                                        onChange={handleFormChange} ></input>
                                 </div>
 
                                 <div className='mx-10 my-5 grid grid-cols-2'>
                                     <label className='mx-4'> تلفن همراه :</label>
                                     <input type='text' className='border rounded-md' name='phone'
                                         placeholder={user.phone}
-                                        onChange={handleFormChange} />
+                                        onChange={handleFormChange} ></input>
                                 </div>
 
                                 <div dir='ltr' className='my-12 mx-4'>
