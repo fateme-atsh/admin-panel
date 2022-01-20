@@ -19,7 +19,7 @@ const Profile = () => {
     useEffect(() => {
         const data = [...localData];
         setUser(data);
-        
+
         // save user's data in state for changes
         setEditProfile(data);
     }, [localData]);
@@ -40,9 +40,9 @@ const Profile = () => {
     console.log(['field change:', EditProfile]);
 
     // function: save EDITED informations
-    const handleSaveEditedForm = (event, userId) => {
+    const handleSaveEditedForm = (event, user) => {
         event.preventDefault();
-        const id = userId.id;
+        const id = user.id;
         console.log(id);
 
         const editedUser = {
@@ -78,7 +78,7 @@ const Profile = () => {
                             </div>
 
                             <form className='bg-white w-2/3 m-5 border rounded-md'
-                                onSubmit={(event) => handleSaveEditedForm(event, user.id)}>
+                                onSubmit={(event) => handleSaveEditedForm(event, user)}>
 
                                 <div className='mx-10 my-5 grid grid-cols-2'>
                                     <label className='mx-4'>نام :</label>
