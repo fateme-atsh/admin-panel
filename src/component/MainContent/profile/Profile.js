@@ -19,6 +19,9 @@ const Profile = () => {
     useEffect(() => {
         const data = [...localData];
         setUser(data);
+        
+        // save user's data in state for changes
+        setEditProfile(data);
     }, [localData]);
 
     // when the form's field change, this fucntion called
@@ -32,9 +35,9 @@ const Profile = () => {
         newFormData[fieldName] = fieldValue;
 
         setEditProfile(newFormData);
-        
+
     };
-    console.log(['field change:',EditProfile]);
+    console.log(['field change:', EditProfile]);
 
     // function: save EDITED informations
     const handleSaveEditedForm = (event, userId) => {
@@ -55,7 +58,7 @@ const Profile = () => {
         newUser[index] = editedUser;
 
         setUser(newUser);
-        
+
         // axios.put(`https://randomuser.me/api/?format=JSON/${userId}`, editedUser)
         //     .then(res => { console.log(res) });
     };
