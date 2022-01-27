@@ -1,19 +1,22 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ProfileLocalStorage } from '../../../context/ProfileLocalStorage';
+import ChangePassword from './ChangePassword';
+import EditProfile from './EditProfile';
+import ProfileInfo from './ProfileInformation';
 
 const Profile = () => {
     const localData = useContext(ProfileLocalStorage);
     const [user, setUser] = useState([]);
-    const [EditProfile, setEditProfile] = useState(
-        {
-            name: '',
-            lastName: '',
-            email: '',
-            phone: '',
-        }
-    );
-    const [userId, setUserId] = useState();
+    const [editProfile, setEditProfile] = useState({
+        name: '',
+        last: '',
+        email: '',
+        phone: '',
+    });
+
+    // uses for editting data.
+    const [userId, setUserId] = useState(null);
 
     // save data on localstorage, in component state
     useEffect(() => {
@@ -21,8 +24,26 @@ const Profile = () => {
         setUser(data);
 
         // save user's data in state for changes
-        setEditProfile(data);
+        setEditProfile(user);
     }, [localData]);
+
+    console.log(userId);
+
+    //when user clicked the edit button
+    const handleEditProfile = (event, user) => {
+        event.preventDefault();
+        setUserId(user.id);
+        console.log(user.id);
+
+        const editedValues = {
+            name: user.name,
+            last: user.last,
+            email: user.email,
+            phone: user.phone,
+        };
+        setEditProfile(editedValues);
+        console.log(userId);
+    };
 
     // when the form's field change, this fucntion called
     const handleFormChange = (event) => {
@@ -31,40 +52,49 @@ const Profile = () => {
         const fieldName = event.target.getAttribute("name");
         const fieldValue = event.target.value;
 
-        const newFormData = { ...EditProfile };
+        const newFormData = { ...editProfile };
         newFormData[fieldName] = fieldValue;
 
         setEditProfile(newFormData);
+        console.log(['field change:', editProfile]);
 
     };
-    console.log(['field change:', EditProfile]);
 
     // function: save EDITED informations
-    const handleSaveEditedForm = (event, user) => {
+    const handleSaveEditedForm = (event, props) => {
         event.preventDefault();
-        const id = user.id;
+        const id = props.id;
         console.log(id);
 
         const editedUser = {
-            name: EditProfile.name,
-            lastName: EditProfile.lastName,
-            phone: EditProfile.phone,
-            email: EditProfile.email,
+            name: editProfile.name,
+            last: editProfile.last,
+            phone: editProfile.phone,
+            email: editProfile.email,
         };
+        console.log(editProfile);
 
-        const newUser = [...user];
+        const newUser = { ...user };
 
-        const index = user.findIndex((user) => user.id === userId);
+        const index = user.findIndex((user) => user.id.value === id);
+        console.log(index)
         newUser[index] = editedUser;
 
-        setUser(newUser);
+        setUser(editedUser);
 
-        // axios.put(`https://randomuser.me/api/?format=JSON/${userId}`, editedUser)
-        //     .then(res => { console.log(res) });
+        axios.put(`https://randomuser.me/api/${id}`, editedUser)
+            .then(res => { console.log(res) });
+    };
+
+    // function: cancel editting
+    const handleCancelEdditing = (event) => {
+        event.preventDefault();
+        setUserId(null);
     };
 
     return (
         <section className='flex my-10'>
+
             {user !== [] ?
                 <>
                     {user.map((user) => (
@@ -77,43 +107,29 @@ const Profile = () => {
                                 <p className='text-xs text-justify py-2 px-5' >لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>
                             </div>
 
-                            <form className='bg-white w-2/3 m-5 border rounded-md'
-                                onSubmit={(event) => handleSaveEditedForm(event, user)}>
+                            <div className='w-2/3'>
+                                {userId !== null ?
+                                    <EditProfile
+                                        id={user.id.value}
+                                        handleFormChange={handleFormChange}
+                                        handleSaveEditedForm={handleSaveEditedForm}
+                                        handleCancelEdditing={handleCancelEdditing}
+                                        editProfile={editProfile}
+                                    />
+                                    :
+                                    <ProfileInfo
+                                        id={user.id.value}
+                                        name={user.name.first}
+                                        last={user.name.last}
+                                        email={user.email}
+                                        phone={user.phone}
+                                        handleEditProfile={handleEditProfile}
+                                    />
+                                }
+                                <ChangePassword
 
-                                <div className='mx-10 my-5 grid grid-cols-2'>
-                                    <label className='mx-4'>نام :</label>
-                                    <input type='text' className='border rounded-md' name='name'
-                                        placeholder={user.name.first}
-                                        onChange={handleFormChange} ></input>
-                                </div>
-
-                                <div className='mx-10 my-5 grid grid-cols-2'>
-                                    <label className='mx-4'>نام خانوادگی :</label>
-                                    <input type='text' className='border rounded-md' name='lastName'
-                                        placeholder={user.name.last}
-                                        onChange={handleFormChange} ></input>
-                                </div>
-
-                                <div className='mx-10 my-5 grid grid-cols-2'>
-                                    <label className='mx-4'>ایمیل :</label>
-                                    <input type='text' className='border rounded-md' name='email'
-                                        value={user.email}
-                                        onChange={handleFormChange} ></input>
-                                </div>
-
-                                <div className='mx-10 my-5 grid grid-cols-2'>
-                                    <label className='mx-4'> تلفن همراه :</label>
-                                    <input type='text' className='border rounded-md' name='phone'
-                                        placeholder={user.phone}
-                                        onChange={handleFormChange} ></input>
-                                </div>
-
-                                <div dir='ltr' className='my-12 mx-4'>
-                                    <input type='reset' value='کنسل' className='bg-gray-500 border rounded-md text-white px-5 py-3 mx-4 hover:bg-gray-600 cursor-pointer' />
-                                    <input type="submit" value='ذخیره ی تغییرات' className='bg-blue-500 border rounded-md text-white px-5 py-3 hover:bg-blue-600 cursor-pointer' />
-                                </div>
-
-                            </form>
+                                />
+                            </div>
                         </Fragment>
                     ))}
                 </>

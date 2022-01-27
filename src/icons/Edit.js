@@ -5,7 +5,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 class Edit extends React.Component {
     render() { 
         return (<div>
-<FontAwesomeIcon icon={faEdit} className="text-lg"/>
+<FontAwesomeIcon icon={faEdit} className="text-lg sm:text-sm"/>
         </div>);
     }
 }

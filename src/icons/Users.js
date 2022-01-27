@@ -5,7 +5,7 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 class Users extends React.Component {
     render() { 
         return (<div>
-<FontAwesomeIcon icon={faUsers} className="text-3xl"/>
+<FontAwesomeIcon icon={faUsers} className="text-3xl sm:text-lg"/>
         </div>);
     }
 }

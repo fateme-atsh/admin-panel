@@ -5,7 +5,7 @@ import { faIdCard } from '@fortawesome/free-solid-svg-icons';
 class Profile extends React.Component {
     render() { 
         return (<div>
-<FontAwesomeIcon icon={faIdCard} className="text-3xl"/>
+<FontAwesomeIcon icon={faIdCard} className="text-3xl sm:text-lg"/>
         </div>);
     }
 }

@@ -13,14 +13,14 @@ import BtnLogicContextProvider from '../context/BtnLogicContext';
 const Layout = () => {
 
     return (
-        <div className='flex bg-gray-100 overflow-x-hidden'>
+        <div className='flex min-h-screen bg-gray-100 overflow-x-hidden'>
             <BrowserRouter>
                 <ProfileLocalStorageProvider>
                     <UsersLocalStorageProvider>
                         <TablesLocalStorageProvider>
                             <BtnLogicContextProvider>
                             <Nav/>
-                            <section className='h-full w-full'>
+                            <section className='flex-1'>
                                 <Header/>
                                 <Main/>
                                 <Footer />

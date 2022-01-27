@@ -5,7 +5,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 class UserCircle extends React.Component {
     render() { 
         return (<div>
-<FontAwesomeIcon icon={faUserCircle} className="text-3xl"/>
+<FontAwesomeIcon icon={faUserCircle} className="text-3xl sm:text-lg"/>
         </div>);
     }
 }

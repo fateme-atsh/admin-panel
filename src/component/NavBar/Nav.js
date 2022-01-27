@@ -8,15 +8,17 @@ const Nav = () => {
     const BtnContext = useContext(BtnLogicContext);
     const [btnLogic, setBtnLogic] = useState([]);
 
-    useEffect(() => { 
+    useEffect(() => {
         setBtnLogic(BtnContext);
     }, [BtnContext]);
 
     return (
-        <nav className='bg-white grid grid-cols-1 text-xl sm:translate-x-0'>
-            {btnLogic.btnLogic === true
-                ? <OpenNav />
-                : <CloseNav />}
+        <nav className='bg-white text-xl sm:translate-x-0 sm:absolute sm:right-0 '>
+            <div className='grid grid-cols-1 '>
+                {btnLogic.btnLogic === true
+                    ? <OpenNav />
+                    : <CloseNav />}
+            </div>
         </nav>
     );
 }

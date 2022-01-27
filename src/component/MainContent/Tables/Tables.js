@@ -59,10 +59,6 @@ const Tables = () => {
                         <th className='py-4 px-2'>شماره میز</th>
                         <th className='py-4 px-2'>ظرفیت</th>
                         <th className='py-4 px-2'>تاریخ</th>
-                        <th className='py-4 px-2'>ساعت</th>
-                        <th className='py-4 px-2'>وضعیت رزرو</th>
-                        <th className='py-4 px-2'>نام رزرو کننده</th>
-                        <th className='py-4 px-2'>شماره تماس رزرو کننده</th>
                         <th className='py-4 px-2'>ویرایش</th>
                         <th className='py-4 px-2'>حذف</th>
                     </tr>
@@ -79,8 +75,6 @@ const Tables = () => {
                                     date={table.date}
                                     startOfBooking={table.startOfBooking}
                                     endOfBooking={table.endOfBooking}
-                                    user={table.user}
-                                    userPhone={table.userPhone}
                                     handleDeleteRows={handleDeleteRows}
                                 />
                             </Fragment>

@@ -3,13 +3,13 @@ import Copyright from '../../icons/Copyright';
 
 const Footer = () => {
     return (  
-        <footer className='bg-gray-100 border-t border-gray-200 flex justify-between py-8 px-3'>
+        <footer className='bg-gray-100 border-t border-gray-200 flex justify-between py-8 px-3 sticky bottom-0'>
             <div className='text-md'>
                 <ul className='cursor-pointer flex '>
                     <li><a href='#' className='hover:text-blue-400 px-4'>خانه</a></li>
                     <li><a href='#' className='hover:text-blue-400 px-4'>شرکت</a></li>
                     <li><a href='#' className='hover:text-blue-400 px-4'>پرتفولیو</a></li>
-                    <li><a href='#' className='hover:text-blue-400'>بلاگ</a></li>
+                    <li><a href='#' className='hover:text-blue-400 px-4'>بلاگ</a></li>
                 </ul>
             </div>
 

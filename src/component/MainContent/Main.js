@@ -5,11 +5,13 @@ import Logout from './Logout';
 import Tables from './Tables/Tables';
 import Profile from './profile/Profile';
 import NewTable from './Tables/NewTable';
+import Reserve from './Reserved/Reserve';
+import EditForm from './Users/EditForm';
 
 
 const Main = () => {
     return (
-        <main>
+        <main className='h-screen overflow-y-auto overflow-x-hidden'>
             <Routes>
                 <Route index element={
                     <div className='mt-20 mb-24 mx-10'>
@@ -22,6 +24,8 @@ const Main = () => {
                     </div>
                 } />
                 <Route path="/users" element={<Users />} />
+                <Route path="/edit-form" element={<EditForm/>} />
+                <Route path="/reserve" element={<Reserve/>}/>
                 <Route path="/tables" element={<Tables />} />
                 <Route path="/new-table" element={<NewTable />} />
                 <Route path="/profile" element={<Profile />} />

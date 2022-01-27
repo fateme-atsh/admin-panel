@@ -5,7 +5,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 class Trash extends React.Component {
     render() { 
         return (<div>
-<FontAwesomeIcon icon={faTrashAlt} className="text-lg"/>
+<FontAwesomeIcon icon={faTrashAlt} className="text-lg sm:text-sm"/>
         </div>);
     }
 }

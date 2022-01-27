@@ -6,11 +6,6 @@ const NewTable = () => {
         {
             tableNumb: '',
             people: '',
-            date: '',
-            startOfBooking: '',
-            endOfBooking: '',
-            user: '',
-            userPhone: '',
         }
     );
 
@@ -32,7 +27,7 @@ const NewTable = () => {
     return (
         <section>
             <div dir='ltr' className='my-6 ml-14'>
-                <Link to="/tables" className='bg-blue-500 text-white font-bold text-lg rounded-md px-3 py-2 hover:bg-blue-600'>
+                <Link to="/tables" className='bg-white text-blue-500 font-bold text-lg border-2 border-blue-500 rounded-md px-3 py-2 hover:bg-gray-50'>
                     بازگشت
                 </Link>
             </div>
@@ -48,36 +43,7 @@ const NewTable = () => {
                     <label className='mx-8 text-xl font-semibold'> ظرفیت</label>
                     <input type="number" className='border border-slate-900 rounded-md' name='people' 
                     onChange={handleFormChange}></input>
-                </div>
-
-                <div className='my-5 grid grid-cols-4'>
-                    <label className='mx-8 text-xl font-semibold'>تاریخ</label>
-                    <input type="date" className='border border-slate-900 rounded-md' name='date' 
-                    onChange={handleFormChange}></input>
-                </div>
-
-                <div className='my-5 grid grid-cols-4'>
-                    <label className='mx-8 text-xl font-semibold'>ساعت شروع</label>
-                    <input type="time" className='border border-slate-900 rounded-md' name='startOfBooking' 
-                    onChange={handleFormChange}></input>
-                </div>
-                <div className='my-5 grid grid-cols-4'>
-                    <label className='mx-8 text-xl font-semibold'>ساعت پایان</label>
-                    <input type="time" className='border border-slate-900 rounded-md' name='endOfBooking' 
-                    onChange={handleFormChange}></input>
-                </div>
-
-                <div className='my-5 grid grid-cols-4'>
-                    <label className='mx-8 text-xl font-semibold' >نام رزرو کننده</label>
-                    <input type="text" className='border border-slate-900 rounded-md' name='user' 
-                    onChange={handleFormChange}></input>
-                </div>
-
-                <div className='my-5 grid grid-cols-4'>
-                    <label className='mx-8 text-xl font-semibold'>شماره تماس رزروکننده</label>
-                    <input type="number" className='border border-slate-900 rounded-md' name='userPhone' 
-                    onChange={handleFormChange}></input>
-                </div>
+                </div>               
 
                 <div className='my-10 pl-8 w-2/4' dir='ltr'>
                     <input type='reset' value='کنسل'
