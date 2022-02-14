@@ -3,7 +3,7 @@ import React, { Component, createContext } from 'react';
 export const BtnLogicContext = createContext();
 class BtnLogicContextProvider extends Component {
     state = {
-        btnLogic: true
+        btnLogic: false
     }
     clickToCloseNav = () => {
         this.setState({ btnLogic: !this.state.btnLogic })

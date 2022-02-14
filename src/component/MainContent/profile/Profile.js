@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 import { ProfileLocalStorage } from '../../../context/ProfileLocalStorage';
 import ChangePassword from './ChangePassword';
 import EditProfile from './EditProfile';
@@ -83,7 +84,12 @@ const Profile = () => {
         setUser(editedUser);
 
         axios.put(`https://randomuser.me/api/${id}`, editedUser)
-            .then(res => { console.log(res) });
+            .then(res => {
+                console.log(res)
+                swal("تغییرات با موفقیت ثبت شد.", {
+                    icon: "success",
+                });
+            });
     };
 
     // function: cancel editting
@@ -93,13 +99,13 @@ const Profile = () => {
     };
 
     return (
-        <section className='flex my-10'>
+        <section className='flex my-10 sm:grid sm:my-2 sm:text-xs'>
 
             {user !== [] ?
                 <>
-                    {user.map((user) => (
+                    {user.map((user, i) => (
                         <Fragment>
-                            <div className='bg-white w-1/3 m-5 grid justify-center border rounded-md'>
+                            <div className='bg-white w-1/3 m-5 grid justify-center border rounded-md sm:w-11/12'>
                                 <div className='grid justify-center'>
                                     <img src={user.picture.large} alt="user" className='rounded-full mx-3 my-5' />
                                 </div>
@@ -107,9 +113,9 @@ const Profile = () => {
                                 <p className='text-xs text-justify py-2 px-5' >لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.</p>
                             </div>
 
-                            <div className='w-2/3'>
+                            <div className='w-2/3 sm:w-11/12 sm:m-5 sm:grid sm:p-0'>
                                 {userId !== null ?
-                                    <EditProfile
+                                    <EditProfile key={i}
                                         id={user.id.value}
                                         handleFormChange={handleFormChange}
                                         handleSaveEditedForm={handleSaveEditedForm}
@@ -118,6 +124,7 @@ const Profile = () => {
                                     />
                                     :
                                     <ProfileInfo
+                                        key={i}
                                         id={user.id.value}
                                         name={user.name.first}
                                         last={user.name.last}
@@ -127,7 +134,7 @@ const Profile = () => {
                                     />
                                 }
                                 <ChangePassword
-
+                                    handleFormChange={handleFormChange}
                                 />
                             </div>
                         </Fragment>

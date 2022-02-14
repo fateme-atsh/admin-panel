@@ -60,7 +60,6 @@ const Users = () => {
     //when user clicked the edit button in a row
     const editClick = (event, props) => {
         event.preventDefault();
-        setUserId(props.id);
         console.log(props.id);
 
         const editedValues = {
@@ -70,22 +69,23 @@ const Users = () => {
             email: props.email,
             phone: props.phone,
         };
-        setEditTableRows(editedValues);
-        // navigate('/edit-form')
+        localStorage.setItem('edit-user', JSON.stringify(editedValues));
+        navigate('/edit-form')
     };
 
     return (
-        <section>
-
-            <table className='mx-10 my-5 w-11/12 text-black'>
+        <section className='sm:text-xs sm:w-full sm:px-12 md:text-sm'>
+            <table className='mx-10 my-5 w-11/12 scrollbar-thin scrollbar-thumb-gray-500
+            sm:w-full sm:overflow-x-scroll sm:block sm:m-5
+            md:w-full md:overflow-x-scroll md:block md:mx-2'>
                 <thead className='bg-gray-800 text-white'>
                     <tr>
-                        <th className='py-4 px-2'>نام</th>
-                        <th className='py-4 px-2'>نام کاربری</th>
-                        <th className='py-4 px-2'>شماره تماس</th>
-                        <th className='py-4 px-2'>ایمیل</th>
-                        <th className='py-4 px-2'>ویرایش</th>
-                        <th className='py-4 px-2'>حذف</th>
+                        <th className='py-4 px-2 sm:p-1'>نام</th>
+                        <th className='py-4 px-2 sm:p-1'>نام کاربری</th>
+                        <th className='py-4 px-2 sm:p-1'>شماره تماس</th>
+                        <th className='py-4 px-2 sm:p-1'>ایمیل</th>
+                        <th className='py-4 px-2 sm:p-1'>ویرایش</th>
+                        <th className='py-4 px-2 sm:p-1'>حذف</th>
                     </tr>
                 </thead>
 
@@ -94,7 +94,7 @@ const Users = () => {
                         {users.map((user) => (
                             <Fragment>
                                 <ShowUsersTable
-                                    id={user.id}
+                                    key={user.id}
                                     name={user.name}
                                     username={user.username}
                                     email={user.email}

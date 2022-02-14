@@ -1,10 +1,9 @@
 import React from 'react';
 
 const EditProfile = ({ ...props }) => {
-
     return (
 
-        <form className='bg-white m-5 border rounded-md'
+        <form className='bg-white m-5 border rounded-md sm:m-0'
             onSubmit={(event) => props.handleSaveEditedForm(event,props)}>
 
             <div className='mx-10 my-5 grid grid-cols-2'>
@@ -40,11 +39,11 @@ const EditProfile = ({ ...props }) => {
             <div dir='ltr' className='my-12 mx-4'>
                 <button type='reset'
                     onClick={props.handleCancelEdditing}
-                    className='bg-gray-500 border rounded-md text-white px-5 py-3 mx-4 hover:bg-gray-600 cursor-pointer' >
+                    className='bg-gray-500 border rounded-md text-white px-5 py-3 mx-4 hover:bg-gray-600 cursor-pointer sm:p-2' >
                     کنسل
                 </button>
                 <button type="submit" 
-                className='bg-blue-500 border rounded-md text-white px-5 py-3 hover:bg-blue-600 cursor-pointer' >
+                className='bg-blue-500 border rounded-md text-white px-5 py-3 hover:bg-blue-600 cursor-pointer sm:p-2' >
                     ذخیره ی تغییرات
                 </button>
             </div>

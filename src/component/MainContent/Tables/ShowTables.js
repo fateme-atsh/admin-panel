@@ -11,13 +11,13 @@ const ShowTables = ({ ...props }) => {
             <td className='py-4 px-2'>{props.people}</td>
             
             <td className='py-4 px-2 text-violet-800 hover:bg-violet-200'>
-                <button type="button" >
+                <button type="button" onClick={(event) => props.calendarClick(event,props)}>
                     <Calendar />
                 </button>
             </td>
 
             <td className='py-4 px-2 text-green-600 hover:bg-green-200'>
-                <button type="button" >
+                <button type="button" onClick={(event)=> props.editClick(event,props)}>
                     <Edit/>
                 </button>
             </td>

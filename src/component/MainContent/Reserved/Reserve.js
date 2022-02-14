@@ -1,6 +1,4 @@
-import React,{Fragment, useState, useContext,useEffect} from 'react';
-import axios from 'axios';
-import swal from 'sweetalert';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 import ReserveTable from './ReserveTable';
 import { TablesLocalStorage } from '../../../context/TablesLocalStorage';
 
@@ -13,26 +11,31 @@ const Reserve = () => {
         setTables([...localData]);
     }, [localData]);
 
-    return ( 
-        <section className=''>           
-            <table className='mx-10 my-5 w-11/12 text-black'>
+    return (
+        <section className='sm:text-xs sm:w-full sm:px-12 md:text-sm'>           
+            <table className='mx-10 my-5 w-11/12 scrollbar-thin scrollbar-thumb-gray-500
+            sm:w-full sm:overflow-x-scroll sm:block sm:m-5
+            md:w-full md:overflow-x-scroll md:block md:mx-2'>
                 <thead className='bg-gray-800 text-white'>
                     <tr>
-                        <th className='py-4 px-2'>شماره میز</th>
-                        <th className='py-4 px-2'>ظرفیت</th>
-                        <th className='py-4 px-2'>تاریخ</th>
-                        <th className='py-4 px-2'>ساعت</th>
-                        <th className='py-4 px-2'>وضعیت رزرو</th>
-                        <th className='py-4 px-2'>نام رزروکننده</th>
-                        <th className='py-4 px-2'>شماره تماس رزروکننده</th>
+                        <th className='py-4 px-2 sm:p-1'>شماره میز</th>
+                        <th className='py-4 px-2 sm:p-1'>ظرفیت</th>
+                        <th className='py-4 px-2 sm:p-1'>تاریخ</th>
+                        <th className='py-4 px-2 sm:p-1'>ساعت</th>
+                        <th className='py-4 px-2 sm:p-1'>نام رزروکننده</th>
+                        <th className='py-4 px-2 sm:p-1'>شماره تماس رزروکننده</th>
+                        <th className='py-4 px-2 sm:p-1'>وضعیت رزرو</th>
+                        <th className='py-4 px-2 sm:p-1'>مدیریت رزرو ها</th>
+
                     </tr>
                 </thead>
 
                 {tables !== [] ?
                     <tbody>
-                        {tables.map((table) => (
+                        {tables.map((table,i) => (
                             <Fragment>
                                 <ReserveTable
+                                    key={i}
                                     id={table.id}
                                     tableNumb={table.tableNumb}
                                     people={table.people}
@@ -41,6 +44,7 @@ const Reserve = () => {
                                     endOfBooking={table.endOfBooking}
                                     user={table.user}
                                     userPhone={table.userPhone}
+                                    status={table.status}
                                 />
                             </Fragment>
                         ))}
@@ -52,7 +56,7 @@ const Reserve = () => {
                 }
             </table>
         </section>
-     );
+    );
 }
- 
+
 export default Reserve;
